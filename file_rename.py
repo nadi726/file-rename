@@ -1,16 +1,19 @@
 # Bug when renaming file name if the name already exits
 
-import os, time
+import os
+import time
 
 directory = raw_input('Enter a directory: ')
 if not directory: directory = os.getcwd()
 
-
 def sort_files(order='time'):
-    """Returns a list of the files in the order they should be renamed"""
+    """
+    Returns a list of the files in the order they should be renamed"""
+    
     files = os.listdir(directory)
     lst = []
-
+    # Make a list of tuples each having the time for sorting
+    # and the file name.
     for f in files:
         join = os.path.join(directory, f)
         times = time.gmtime(os.path.getmtime(join))
@@ -31,15 +34,16 @@ for t, name in lst:
     names_lst.append(name)
 backup.close()
 
-filenames_list = map(str, range(1, len(names_lst)+1)) # stringed numbers for the filenames
+# Stringed numbers for the filenames
+filenames_list = map(str, range(1, len(names_lst)+1))
 
 for count, name in enumerate(names_lst):
     ext = os.path.splitext(name)[1]
     join = os.path.join(directory, name)
     print 'Old: ' + join
+    print
     new_join = os.path.join(directory, filenames_list[count]) + ext
     print 'New: ' + new_join
     os.rename(join, new_join)
 print 'Done'
 
-raw_input()
