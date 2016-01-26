@@ -18,7 +18,7 @@ def sort_files(order='time'):
     for f in files:
         join = os.path.join(directory, f)
         times = time.gmtime(os.path.getmtime(join))
-        times = [times.tm_year, times.tm_yday, times.tm_hour, times.tm_min, times.tm_sec]
+        times = (times.tm_year, times.tm_yday, times.tm_hour, times.tm_min, times.tm_sec)
         lst.append( (times, f) )
 
     # Sort only be the time value, not the file name
