@@ -31,14 +31,7 @@ for t, name in lst:
     names_lst.append(name)
 backup.close()
 
-'''print 'if you want the files to be renamed as anything other than numbers, write the filenames to a file named filenames.txt'
-raw_input('which will be located in the same directory as this program')'''#currently uneeded, so stringed to prevent confusion
-if os.path.isfile('filenames.txt'):
-    filenames = open('filenames.txt')
-    filenames_list = filenames.read().split('/n')
-    filenames.close()
-else:
-    filenames_list = map(str, range(1, len(names_lst)+1)) # Needs stringed numbers for the filenames
+filenames_list = map(str, range(1, len(names_lst)+1)) # stringed numbers for the filenames
 
 for count, name in enumerate(names_lst):
     ext = os.path.splitext(name)[1]
